@@ -1,0 +1,16 @@
+version: 0.0
+os: windows
+files:
+  - source: /
+    destination: C:\predeploy\admin
+file_exists_behavior: OVERWRITE
+
+hooks:
+  BeforeInstall:
+    - location: \before-iis-install-stop.bat
+      timeout: 900
+  AfterInstall:
+    - location: \after-go-live.bat 
+      timeout: 180
+    - location: \after-iis-install-start.bat
+      timeout: 180
